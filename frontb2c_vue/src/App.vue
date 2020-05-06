@@ -1,28 +1,37 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <router-view></router-view>
 </template>
 
+<style lang="scss">
+// 3rd party plugins css
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+@import "~socicon/css/socicon.css";
+//@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "assets/plugins/line-awesome/css/line-awesome.css";
+@import "assets/plugins/flaticon/flaticon.css";
+@import "assets/plugins/flaticon2/flaticon.css";
+
+// Main demo style scss
+@import "assets/sass/style.vue";
+
+// Check documentation for RTL css
+@import "assets/css/style.vue.rtl";
+
+// Demo skins (demo1 only)
+@import "assets/sass/global/integration/frameworks/vue/skins";
+</style>
+
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { OVERRIDE_LAYOUT_CONFIG } from "@/store/config.module";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: "MetronicVue",
+  mounted() {
+    /**
+     * this is to override the layout config using saved data from localStorage
+     * remove this to use config only from static json (@/common/config/layout.config.json)
+     */
+    this.$store.dispatch(OVERRIDE_LAYOUT_CONFIG);
   }
-}
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
